@@ -3,191 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevStore - Il tuo Negozio Tech</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Gabriele E-Commerce | Tech & Lifestyle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
+            --primary: #6366f1; /* Indigo elegante */
+            --primary-hover: #4f46e5;
             --dark: #0f172a;
             --light: #f8fafc;
             --gray: #64748b;
             --border: #e2e8f0;
+            --gold: #fbbf24;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--light); color: var(--dark); overflow-x: hidden; }
-        /* NAVBAR */
-        .navbar { background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        h1, h2, h3, .logo { font-family: 'Montserrat', sans-serif; }
+
+        /* NAVBAR PREMIUM */
+        .navbar { background: rgba(255, 255, 255, 0.95); padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.05); backdrop-filter: blur(10px); }
+        .logo { font-size: 1.6rem; font-weight: 700; color: var(--dark); text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; }
+        .logo span { color: var(--primary); }
         
-        .cart-icon-container { position: relative; cursor: pointer; padding: 10px; }
-        .cart-icon-container i { font-size: 1.4rem; color: var(--dark); transition: 0.3s; }
-        .cart-icon-container:hover i { color: var(--primary); }
-        .cart-badge { position: absolute; top: 0; right: 0; background: #ef4444; color: white; font-size: 0.7rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transform: scale(0); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .cart-icon-container { position: relative; cursor: pointer; padding: 10px; background: #f1f5f9; border-radius: 50%; width: 45px; height: 45px; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
+        .cart-icon-container i { font-size: 1.2rem; color: var(--dark); transition: 0.3s; }
+        .cart-icon-container:hover { background: var(--primary); }
+        .cart-icon-container:hover i { color: white; }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; font-size: 0.75rem; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transform: scale(0); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 2px 5px rgba(239,68,68,0.4); }
         .cart-badge.active { transform: scale(1); }
-        /* HERO */
-        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 4rem 5%; text-align: center; }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .hero p { color: #94a3b8; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* HERO GLASSMORPHISM */
+        .hero { position: relative; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); color: white; padding: 5rem 5%; text-align: center; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 60%); pointer-events: none; }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; letter-spacing: -1px; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { color: #cbd5e1; font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.2); margin-bottom: 20px; }
+
         /* PRODUCTS GRID */
-        .container { padding: 3rem 5%; max-width: 1400px; margin: 0 auto; }
-        .section-title { font-size: 1.8rem; font-weight: 600; margin-bottom: 2rem; color: var(--dark); border-left: 4px solid var(--primary); padding-left: 15px; }
+        .container { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 2.5rem; color: var(--dark); text-align: center; }
+        .section-title span { color: var(--primary); }
         
-        .loader { text-align: center; padding: 3rem; font-size: 1.2rem; color: var(--gray); display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .spinner { width: 40px; height: 40px; border: 4px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+        .loader { text-align: center; padding: 4rem; font-size: 1.2rem; color: var(--gray); display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .spinner { width: 50px; height: 50px; border: 4px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; position: relative; border: 1px solid var(--border); }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-color: var(--primary); }
+
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 35px; }
+        .product-card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: all 0.4s ease; display: flex; flex-direction: column; position: relative; border: 1px solid transparent; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: rgba(99,102,241,0.2); }
         
-        .product-image { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; mix-blend-mode: multiply; }
-        .category-tag { position: absolute; top: 15px; left: 15px; background: #f1f5f9; color: var(--gray); font-size: 0.7rem; padding: 4px 10px; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .product-title { font-size: 1rem; font-weight: 600; margin-bottom: 10px; color: var(--dark); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex-grow: 1; }
+        .product-image-wrapper { position: relative; padding: 20px; background: white; border-radius: 15px; margin-bottom: 20px; }
+        .product-image { width: 100%; height: 200px; object-fit: contain; transition: 0.3s; }
+        .product-card:hover .product-image { transform: scale(1.05); }
         
-        .product-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border); }
-        .product-price { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
-        .btn-add { background: var(--dark); color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
-        .btn-add:hover { background: var(--primary); transform: scale(1.05); }
+        .category-tag { position: absolute; top: 0; left: 0; background: var(--dark); color: white; font-size: 0.7rem; padding: 6px 12px; border-radius: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        .product-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; color: var(--dark); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex-grow: 1; line-height: 1.4; }
+        .product-rating { color: var(--gold); font-size: 0.85rem; margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
+        .product-rating span { color: var(--gray); font-weight: 500; }
+        
+        .product-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); }
+        .product-price { font-size: 1.4rem; font-weight: 700; color: var(--dark); font-family: 'Montserrat', sans-serif; }
+        .btn-add { background: white; color: var(--primary); border: 2px solid var(--primary); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transition: 0.3s; display: flex; justify-content: center; align-items: center; }
+        .btn-add:hover { background: var(--primary); color: white; transform: rotate(90deg); }
+
         /* CART SIDEBAR */
-        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; pointer-events: none; transition: 0.3s; backdrop-filter: blur(2px); }
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.6); z-index: 999; opacity: 0; pointer-events: none; transition: 0.4s; backdrop-filter: blur(4px); }
         .cart-overlay.open { opacity: 1; pointer-events: all; }
         
-        .cart-sidebar { position: fixed; top: 0; right: -450px; width: 400px; max-width: 100%; height: 100vh; background: white; z-index: 1000; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); display: flex; flex-direction: column; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
+        .cart-sidebar { position: fixed; top: 0; right: -500px; width: 450px; max-width: 100%; height: 100vh; background: white; z-index: 1000; transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
         .cart-sidebar.open { right: 0; }
         
-        .cart-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        .cart-header h2 { font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
-        .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--gray); transition: 0.2s; }
-        .close-cart:hover { color: #ef4444; transform: rotate(90deg); }
-        .cart-items { flex-grow: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
-        .cart-empty { text-align: center; color: var(--gray); margin-top: 50px; display: flex; flex-direction: column; gap: 15px; }
-        .cart-empty i { font-size: 3rem; opacity: 0.5; }
-        .cart-item { display: flex; gap: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border); align-items: center; }
-        .cart-item-img { width: 60px; height: 60px; object-fit: contain; }
+        .cart-header { padding: 25px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--light); }
+        .cart-header h2 { font-size: 1.4rem; display: flex; align-items: center; gap: 12px; color: var(--dark); }
+        .close-cart { background: white; border: 1px solid var(--border); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; color: var(--dark); transition: 0.3s; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; }
+        .close-cart:hover { background: #ef4444; color: white; border-color: #ef4444; transform: scale(1.1); }
+
+        .cart-items { flex-grow: 1; overflow-y: auto; padding: 25px; display: flex; flex-direction: column; gap: 20px; }
+        .cart-empty { text-align: center; color: var(--gray); margin-top: 60px; display: flex; flex-direction: column; gap: 20px; }
+        .cart-empty i { font-size: 4rem; opacity: 0.3; color: var(--primary); }
+
+        .cart-item { display: flex; gap: 20px; padding: 20px; background: white; border: 1px solid var(--border); border-radius: 15px; align-items: center; transition: 0.3s; }
+        .cart-item:hover { border-color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .cart-item-img { width: 70px; height: 70px; object-fit: contain; }
         .cart-item-details { flex-grow: 1; }
-        .cart-item-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-        .cart-item-price { color: var(--primary); font-weight: 700; font-size: 0.95rem; }
+        .cart-item-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .cart-item-price { color: var(--primary); font-weight: 700; font-size: 1.1rem; font-family: 'Montserrat', sans-serif;}
         
-        .quantity-controls { display: flex; align-items: center; gap: 10px; margin-top: 5px; }
-        .qty-btn { background: #f1f5f9; border: none; width: 25px; height: 25px; border-radius: 5px; cursor: pointer; font-weight: bold; color: var(--dark); transition: 0.2s; }
-        .qty-btn:hover { background: #e2e8f0; }
+        .quantity-controls { display: flex; align-items: center; gap: 15px; margin-top: 10px; background: var(--light); width: fit-content; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--border); }
+        .qty-btn { background: none; border: none; cursor: pointer; font-weight: bold; color: var(--dark); font-size: 1.1rem; transition: 0.2s; }
+        .qty-btn:hover { color: var(--primary); }
         
-        .remove-item { color: #ef4444; background: none; border: none; cursor: pointer; padding: 5px; font-size: 1.1rem; transition: 0.2s; }
-        .remove-item:hover { transform: scale(1.2); }
-        .cart-footer { padding: 20px; border-top: 1px solid var(--border); background: #f8fafc; }
-        .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; }
-        .btn-checkout { width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; }
-        .btn-checkout:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37,99,235,0.3); }
+        .remove-item { color: #ef4444; background: rgba(239,68,68,0.1); border: none; cursor: pointer; width: 35px; height: 35px; border-radius: 8px; font-size: 1rem; transition: 0.2s; }
+        .remove-item:hover { background: #ef4444; color: white; }
+
+        .cart-footer { padding: 25px; border-top: 1px solid var(--border); background: var(--light); }
+        .cart-total { display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; color: var(--gray); margin-bottom: 20px; }
+        .cart-total span:last-child { font-size: 1.8rem; font-weight: 700; color: var(--dark); font-family: 'Montserrat', sans-serif; }
+        
+        .btn-checkout { width: 100%; background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-checkout:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(99,102,241,0.3); }
+
+        /* FOOTER */
+        footer { background: var(--dark); color: white; text-align: center; padding: 2rem 5%; margin-top: 4rem; border-top: 4px solid var(--primary); }
+        footer p { color: #94a3b8; font-size: 0.9rem; }
+
         /* TOAST NOTIFICATION */
-        .toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 12px 25px; border-radius: 30px; font-weight: 500; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(16,185,129,0.3); transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 2000; }
-        .toast.show { bottom: 30px; }
+        .toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 15px 30px; border-radius: 50px; font-weight: 600; display: flex; align-items: center; gap: 12px; box-shadow: 0 15px 30px rgba(16,185,129,0.3); transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 2000; }
+        .toast.show { bottom: 40px; }
+
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.2rem; }
             .cart-sidebar { width: 100%; right: -100%; }
         }
     </style>
 </head>
 <body>
+
     <!-- NAVBAR -->
     <nav class="navbar">
-        <a href="#" class="logo"><i class="fas fa-shopping-bag"></i> DevStore</a>
+        <a href="#" class="logo"><i class="fas fa-layer-group" style="color: var(--primary);"></i> Gabriele<span>Store</span></a>
         <div class="cart-icon-container" onclick="toggleCart()">
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-shopping-bag"></i>
             <div class="cart-badge" id="cart-badge">0</div>
         </div>
     </nav>
+
     <!-- HERO -->
     <header class="hero">
-        <h1>Scopri i Prodotti Migliori</h1>
-        <p>Negozio dimostrativo che carica prodotti in tempo reale tramite FakeStore API. Aggiungi i prodotti al carrello e vedi la magia di Javascript.</p>
+        <div class="hero-content">
+            <span class="hero-badge"><i class="fas fa-bolt" style="color: var(--gold);"></i> Nuovi Arrivi 2026</span>
+            <h1>L'E-Commerce <span>Definitivo</span></h1>
+            <p>Esplora il nostro catalogo prodotti generato in tempo reale. Aggiungi i tuoi articoli preferiti al carrello e sperimenta un'esperienza d'acquisto premium, creata interamente in Javascript puro.</p>
+        </div>
     </header>
+
     <!-- PRODUCTS SECTION -->
     <main class="container">
-        <h2 class="section-title">In Evidenza</h2>
+        <h2 class="section-title">I Nostri <span>Prodotti</span></h2>
         
         <div id="loader" class="loader">
             <div class="spinner"></div>
-            <span>Connessione al database prodotti in corso...</span>
+            <span>Sincronizzazione catalogo in corso...</span>
         </div>
+
         <div class="products-grid" id="products-grid">
             <!-- I prodotti verranno inseriti qui dal Javascript -->
         </div>
     </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <h2>GabrieleStore</h2>
+        <p style="margin-top: 10px;">© 2026 Gabriele Ricci - Full Stack Web Developer. Progetto per Portfolio.</p>
+    </footer>
+
     <!-- CART SIDEBAR -->
     <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
     <div class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
-            <h2><i class="fas fa-shopping-cart"></i> Il tuo Carrello</h2>
+            <h2><i class="fas fa-shopping-bag"></i> Il tuo Carrello</h2>
             <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
         </div>
         
         <div class="cart-items" id="cart-items">
             <!-- Gli elementi del carrello andranno qui -->
         </div>
+
         <div class="cart-footer">
             <div class="cart-total">
-                <span>Totale:</span>
+                <span>Subtotale</span>
                 <span id="cart-total-price">€ 0.00</span>
             </div>
-            <button class="btn-checkout" onclick="checkout()"><i class="fas fa-lock"></i> Procedi al Checkout</button>
+            <button class="btn-checkout" onclick="checkout()"><i class="fas fa-credit-card"></i> Acquista Ora</button>
         </div>
     </div>
+
     <!-- TOAST NOTIFICATION -->
     <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i> <span id="toast-message">Prodotto aggiunto!</span>
+        <i class="fas fa-check-circle" style="font-size: 1.3rem;"></i> <span id="toast-message">Ottima scelta! Aggiunto.</span>
     </div>
+
     <script>
         // --- STATO APPLICAZIONE ---
         let products = [];
-        // Recuperiamo il carrello dal LocalStorage se esiste, altrimenti array vuoto
-        let cart = JSON.parse(localStorage.getItem('devstore_cart')) || [];
+        let cart = JSON.parse(localStorage.getItem('gabrieles_cart')) || [];
+
         // --- FETCH PRODOTTI TRAMITE API ---
         async function fetchProducts() {
             try {
-                // Chiamata all'API pubblica gratuita FakeStore
                 const response = await fetch('https://fakestoreapi.com/products?limit=12');
                 products = await response.json();
                 
                 document.getElementById('loader').style.display = 'none';
                 renderProducts();
-                updateCartUI(); // Aggiorna il carrello all'avvio
+                updateCartUI(); 
             } catch (error) {
-                document.getElementById('loader').innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#ef4444; font-size:2rem;"></i> Errore nel caricamento dei prodotti. Riprova più tardi.';
-                console.error('Errore API:', error);
+                document.getElementById('loader').innerHTML = '<i class="fas fa-wifi" style="color:#ef4444; font-size:2.5rem;"></i><br>Connessione al database fallita. Riprova.';
             }
         }
+
         // --- RENDER PRODOTTI NELLA GRIGLIA ---
         function renderProducts() {
             const grid = document.getElementById('products-grid');
             grid.innerHTML = '';
+
             products.forEach(product => {
-                // Riduciamo la lunghezza del titolo se troppo lungo
+                // Generazione stelline casuali perfette (dato che FakeStore ha dati un po' spogli)
+                const stars = '★'.repeat(Math.round(product.rating.rate)) + '☆'.repeat(5 - Math.round(product.rating.rate));
+                
                 const div = document.createElement('div');
                 div.className = 'product-card';
                 div.innerHTML = `
-                    <span class="category-tag">${product.category}</span>
-                    <img src="${product.image}" alt="${product.title}" class="product-image">
+                    <div class="product-image-wrapper">
+                        <span class="category-tag">${product.category}</span>
+                        <img src="${product.image}" alt="${product.title}" class="product-image">
+                    </div>
                     <h3 class="product-title" title="${product.title}">${product.title}</h3>
-                    <div style="color: #f59e0b; font-size: 0.8rem; margin-bottom: 10px;">
-                        <i class="fas fa-star"></i> ${product.rating.rate} (${product.rating.count} recensioni)
+                    <div class="product-rating">
+                        ${stars} <span>(${product.rating.count})</span>
                     </div>
                     <div class="product-footer">
                         <span class="product-price">€${product.price.toFixed(2)}</span>
-                        <button class="btn-add" onclick="addToCart(${product.id})">
-                            <i class="fas fa-plus"></i> Aggiungi
+                        <button class="btn-add" onclick="addToCart(${product.id})" title="Aggiungi al Carrello">
+                            <i class="fas fa-plus"></i>
                         </button>
                     </div>
                 `;
                 grid.appendChild(div);
             });
         }
+
         // --- GESTIONE CARRELLO ---
         function addToCart(productId) {
-            // Troviamo i dettagli del prodotto dall'array scaricato
             const product = products.find(p => p.id === productId);
-            
-            // Controlliamo se è già nel carrello
             const existingItem = cart.find(item => item.id === productId);
             
             if (existingItem) {
@@ -201,20 +253,22 @@
                     quantity: 1
                 });
             }
+
             saveCart();
             updateCartUI();
             showToast('Prodotto aggiunto al carrello!');
             
-            // Effetto rimbalzo sul badge del carrello
             const badge = document.getElementById('cart-badge');
-            badge.style.transform = 'scale(1.3)';
+            badge.style.transform = 'scale(1.4)';
             setTimeout(() => badge.style.transform = 'scale(1)', 200);
         }
+
         function removeFromCart(productId) {
             cart = cart.filter(item => item.id !== productId);
             saveCart();
             updateCartUI();
         }
+
         function updateQuantity(productId, change) {
             const item = cart.find(i => i.id === productId);
             if (item) {
@@ -227,23 +281,26 @@
                 }
             }
         }
+
         function saveCart() {
-            localStorage.setItem('devstore_cart', JSON.stringify(cart));
+            localStorage.setItem('gabrieles_cart', JSON.stringify(cart));
         }
+
         // --- AGGIORNAMENTO INTERFACCIA CARRELLO ---
         function updateCartUI() {
             const cartItemsContainer = document.getElementById('cart-items');
             const cartBadge = document.getElementById('cart-badge');
             const cartTotalPrice = document.getElementById('cart-total-price');
-            // Calcolo totale pezzi e prezzo
+
             let totalItems = 0;
             let totalPrice = 0;
             cartItemsContainer.innerHTML = '';
+
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = `
                     <div class="cart-empty">
-                        <i class="fas fa-shopping-basket"></i>
-                        <p>Il tuo carrello è vuoto.</p>
+                        <i class="fas fa-box-open"></i>
+                        <p>Non hai ancora aggiunto prodotti.</p>
                     </div>
                 `;
                 cartBadge.classList.remove('active');
@@ -253,6 +310,7 @@
                 cart.forEach(item => {
                     totalItems += item.quantity;
                     totalPrice += (item.price * item.quantity);
+
                     const div = document.createElement('div');
                     div.className = 'cart-item';
                     div.innerHTML = `
@@ -261,43 +319,46 @@
                             <h4 class="cart-item-title">${item.title}</h4>
                             <div class="cart-item-price">€${(item.price * item.quantity).toFixed(2)}</div>
                             <div class="quantity-controls">
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)"><i class="fas fa-minus" style="font-size:0.8rem"></i></button>
+                                <span style="font-weight:600; width: 20px; text-align:center;">${item.quantity}</span>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)"><i class="fas fa-plus" style="font-size:0.8rem"></i></button>
                             </div>
                         </div>
-                        <button class="remove-item" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
+                        <button class="remove-item" onclick="removeFromCart(${item.id})" title="Rimuovi"><i class="fas fa-trash-alt"></i></button>
                     `;
                     cartItemsContainer.appendChild(div);
                 });
             }
+
             cartBadge.innerText = totalItems;
             cartTotalPrice.innerText = `€ ${totalPrice.toFixed(2)}`;
         }
+
         // --- FUNZIONI UI SECONDARIE ---
         function toggleCart() {
             document.getElementById('cart-sidebar').classList.toggle('open');
             document.getElementById('cart-overlay').classList.toggle('open');
         }
+
         function showToast(message) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-message').innerText = message;
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
         }
+
         function checkout() {
             if(cart.length === 0) {
-                alert("Il carrello è vuoto!");
+                alert("Il carrello è vuoto! Aggiungi prima dei prodotti.");
             } else {
-                alert("Questa è una demo! Checkout completato con successo. Verrai reindirizzato.");
+                alert("Questa è una piattaforma dimostrativa per il Portfolio di Gabriele Ricci. Checkout simulato con successo!");
                 cart = [];
                 saveCart();
                 updateCartUI();
                 toggleCart();
             }
         }
+
         // --- AVVIO APP ---
         fetchProducts();
     </script>
